@@ -1,5 +1,6 @@
 # PHYS 263: University Physics III Laboratory
 **George Mason University | Spring 2026**
+[Course Website](http://physics.gmu.edu/~rubinp/courses/263/)
 
 ## Course Overview
 This repository contains the experimental designs, data visualizations, and statistical analyses completed for the University Physics III Laboratory. The course emphasizes four key aspects of experimental physics: designing experiments, developing technical laboratory skills, analyzing data using high-level programming (Python), and communicating results.
