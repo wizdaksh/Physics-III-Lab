@@ -18,8 +18,7 @@ The following units represent the core curriculum and the evolution of the exper
 2. **Characterizing the Atmosphere**
    - Analysis of atmospheric variables and sensor calibration using mobile hardware.
 3. **Pressure and Temperature**
-   - Experimental verification of the Ideal Gas Law (PV=nRT) using a sealed 4200 mL fixed-volume system.
-   - **Key Analysis**: Accounted for the displacement volume of 6 smartphones (approx. 831 mL) to calculate the true gas volume (V_gas ≈ 3369 mL).
+   - Experimental verification of the Ideal Gas Law (PV=nRT) using a sealed jar.
 4. **Total Internal Reflection**
    - Investigating the boundary conditions of light at refractive interfaces.
 5. **Calibrating a Function Generator**
@@ -33,12 +32,11 @@ The following units represent the core curriculum and the evolution of the exper
 Every quantitative measurement in this repository is defined by an interval of uncertainty, following the standards outlined in the lab manual:
 * **Type A Uncertainty**: Evaluated through statistical analysis of repeated measurements.
 * **Type B Uncertainty**: Evaluated through scientific judgment, instrument specifications, and environmental systematic effects (e.g., heat radiation from hardware or volume displacement).
-* **Data Cleaning**: Implemented moving averages (convolution) and strategic slicing to isolate "clean" linear trends from initial setup noise and end-of-trial systematic spikes.
 
 ## Technology Stack
-* **Language**: Python 3.11.9 (managed via `pyenv`)
+* **Language**: Python 3.11.9
 * **Libraries**: 
-  - **NumPy**: For data slicing, mathematical convolution, and statistical calculations.
+  - **NumPy**: For data manipulaiton
   - **Matplotlib**: For generating publication-quality scientific plots.
 * **Tools**: VS Code, Git/GitHub for Version Control.
 
