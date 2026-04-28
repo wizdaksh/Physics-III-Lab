@@ -1,0 +1,247 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{mathptmx}          % Times Roman text + math
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\usepackage{hyperref}
+\usepackage[table]{xcolor}
+
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\captionsetup{font=small,labelfont=bf,skip=8pt}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{PHYS 263 --- Lab 5}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\begin{document}
+
+% ===== TITLE =====
+\begin{center}
+{\Large\bfseries Measuring the Refractive Index of the Solid Polyethylene\\[4pt] Dielectric in RG-58 Coaxial Cable}
+
+\vspace{16pt}
+Daksh Khandelwal\\[4pt]
+PHYS 263\\[4pt]
+April 2026
+\end{center}
+
+\vspace{12pt}
+
+% ===== ABSTRACT =====
+\section*{Abstract}
+
+The refractive index of the solid polyethylene dielectric inside RG-58 coaxial cable was measured by comparing the propagation delay of electrical pulses through two cables of different length. A waveform generator produced pulses at five frequencies spanning 10~Hz to 10~MHz, and a digital oscilloscope measured the time difference between the short-cable and long-cable signals. Using the two-cable method, each time difference was converted to a refractive index via $n = c\,\Delta t / \Delta d$. The weighted mean across all five frequencies yielded $n = 1.594 \pm 0.032$ ($1\sigma$), corresponding to a 95\% confidence interval of $1.594 \pm 0.063$. This result is consistent with the accepted literature value of approximately 1.5 for polyethylene, lying $2.9\sigma$ above it, suggestive of a small systematic bias from cursor placement or unaccounted connector delays. The per-frequency data show the refractive index is approximately constant from 10~Hz to 100~kHz, with a statistically significant increase at 10~MHz ($n = 1.76 \pm 0.07$, $3.7\sigma$ above the literature value), providing evidence for frequency dispersion at higher frequencies. The dominant source of uncertainty is the $\pm 1$~ns oscilloscope cursor resolution, which contributes over 99\% of the total variance in each measurement.
+
+% ===== INTRODUCTION =====
+\section{Introduction}
+
+When electromagnetic waves propagate through a dielectric material, they travel more slowly than in vacuum. The ratio of the vacuum speed of light $c$ to the phase velocity $v$ in the medium defines the refractive index:
+\begin{equation}
+n = \frac{c}{v}
+\label{eq:n_def}
+\end{equation}
+For a non-magnetic, lossless dielectric, the phase velocity follows from Maxwell's equations in matter. In a source-free region, the electric field satisfies the wave equation (derived in Appendix~A):
+\begin{equation}
+\nabla^2 \mathbf{E} - \varepsilon\mu\,\frac{\partial^2 \mathbf{E}}{\partial t^2} = 0
+\label{eq:wave}
+\end{equation}
+from which the phase velocity is identified as $v = 1/\sqrt{\varepsilon\mu}$. In vacuum, $c = 1/\sqrt{\varepsilon_0 \mu_0}$, so the refractive index becomes $n = \sqrt{\varepsilon\mu/\varepsilon_0\mu_0}$.
+
+RG-58 coaxial cable consists of four concentric layers: a central copper conductor (${\sim}0.9$~mm diameter), a solid polyethylene (PE) dielectric insulator, a braided copper outer shield, and a PVC jacket. Electrical signals propagate as guided transverse electromagnetic (TEM) waves confined within the polyethylene layer between the inner and outer conductors. Because the signal travels through polyethylene rather than vacuum, it is slowed by a factor of $n \approx 1.5$, giving RG-58 its characteristic velocity factor of approximately 0.66.
+
+This experiment measures the refractive index by sending electrical pulses through two RG-58 cables of different length and recording the propagation-delay difference $\Delta t$ on an oscilloscope. Because both signals traverse the same connectors and tee junctions, those fixed delays cancel when the difference is taken, isolating the cable contribution. The working equation (derived in Appendix~B) is:
+\begin{equation}
+n = \frac{c\,\Delta t}{\Delta d}
+\label{eq:working}
+\end{equation}
+where $\Delta d = L_{\text{long}} - L_{\text{short}}$ is the difference in cable lengths. In addition to determining a single best-estimate refractive index, measurements were taken at five frequencies (10~Hz to 10~MHz) to characterize any frequency dependence (dispersion) of the dielectric.
+
+% ===== EXPERIMENT =====
+\section{Experiment}
+
+\subsection{Apparatus}
+
+The following equipment was used: a Tektronix TBS1000B digital storage oscilloscope (2~GSa/s sample rate), a B\&K Precision 4010A/4011A function generator capable of producing sine, square, triangle, pulse, and ramp waveforms from 0.2~Hz to 5~MHz, four RG-58 coaxial cables of varying length, three BNC tee adapters, and two 50-$\Omega$ BNC terminating resistors.
+
+Two cables were selected for measurement: a short cable of length $L_{\text{short}} = 185 \pm 1$~cm, and a long cable of length $L_{\text{long}} = 610 \pm 1$~cm ($20 \times 30.5$~cm). The length difference is $\Delta d = 425$~cm, with uncertainty $\sigma_{\Delta d} = \sqrt{2} \approx 1.41$~cm, obtained by adding the individual length uncertainties in quadrature.
+
+\subsection{Procedure}
+
+The function generator was connected to both the short and long cables via BNC tee adapters. The oscilloscope monitored the signals from both cables simultaneously on separate channels. The far end of each cable was left open (unterminated) so that the pulse would reflect at the impedance discontinuity, producing a clearly identifiable return signal.
+
+For each frequency setting, the time delay $\Delta t$ between the short-cable and long-cable signals was measured using the oscilloscope's cursor function. The cursor placement uncertainty was estimated as $\pm 1$~ns, consistent with the oscilloscope's 2~GSa/s sample rate (0.5~ns per sample, with some additional read-error margin).
+
+Measurements were taken at five frequencies: 10~Hz, 1~kHz, 100~kHz, 1~MHz, and 10~MHz. At each frequency, the time difference was recorded and the refractive index computed.
+
+% ===== DATA AND ANALYSIS =====
+\section{Data and Analysis}
+
+Table~\ref{tab:data} presents the measured time differences and the resulting refractive indices at each frequency. The refractive index was computed from Eq.~\eqref{eq:working}, using $c = 2.998 \times 10^8$~m/s and $\Delta d = 4.25$~m.
+
+\begin{table}[H]
+\centering
+\caption{Measured time differences and computed refractive indices at each frequency.}
+\label{tab:data}
+\vspace{4pt}
+\begin{tabular}{cccc}
+\toprule
+\rowcolor[gray]{0.9}
+\textbf{Frequency} & $\boldsymbol{\Delta t}$ \textbf{(ns)} & $\boldsymbol{n}$ & \textbf{95\% CI} \\
+\midrule
+10 Hz   & 22 & 1.552 & $\pm\,0.139$ \\
+1 kHz   & 21 & 1.481 & $\pm\,0.139$ \\
+100 kHz & 22 & 1.552 & $\pm\,0.139$ \\
+1 MHz   & 23 & 1.622 & $\pm\,0.139$ \\
+10 MHz  & 25 & 1.763 & $\pm\,0.139$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The uncertainty in each measurement of $n$ was propagated from the uncertainties in $\Delta t$ and $\Delta d$ using the standard error-propagation formula (Appendix~B, Eq.~\ref{eq:sigma_n}). The dominant source of uncertainty is the $\pm 1$~ns cursor read uncertainty, which contributes over 99\% of the total variance. The $\Delta d$ contribution ($\sqrt{2}$~cm over 425~cm) is negligible by comparison. This means the per-point uncertainty $\sigma_n \approx 0.071$ is nearly identical across all frequencies, and any reduction in uncertainty would most effectively come from improving the time measurement.
+
+The 95\% confidence interval for each measurement is computed as $\pm 1.96\,\sigma_n \approx \pm 0.139$, assuming a Gaussian distribution for the measurement error.
+
+% ===== RESULTS =====
+\section{Results}
+
+\subsection{Per-Frequency Measurements}
+
+Figure~\ref{fig:gauss} shows the probability density function (PDF) of each frequency measurement, modeled as a Gaussian $\mathcal{N}(n_i, \sigma_n^2)$. The shaded regions indicate the 95\% confidence intervals. Because the uncertainty is nearly identical for all five points, the Gaussian curves have the same width and differ only in their horizontal position. The 10~Hz and 100~kHz curves overlap exactly, as both yielded $\Delta t = 22$~ns.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\textwidth]{fig1_gaussian_pdfs.png}
+\caption{Gaussian probability density for each frequency measurement with 95\% CI shaded. The dashed line marks the polyethylene literature value $n \approx 1.5$.}
+\label{fig:gauss}
+\end{figure}
+
+The significant overlap among the Gaussian curves indicates that the measurements are statistically consistent with one another. The polyethylene literature value $n \approx 1.5$ falls within the 95\% confidence band for the 10~Hz, 1~kHz, 100~kHz, and 1~MHz measurements. The 10~MHz measurement, however, yields $n = 1.76 \pm 0.07$, placing the literature value $3.7\sigma$ away and outside its 95\% band.
+
+\subsection{Frequency Dependence}
+
+Figure~\ref{fig:nvsf} presents the refractive index as a function of signal frequency on a logarithmic scale, with both $1\sigma$ and 95\% CI error bars.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig2_n_vs_freq.png}
+\caption{Refractive index versus signal frequency. Inner bars show $\pm 1\sigma$; outer bars show 95\% CI. Dashed line indicates polyethylene literature value.}
+\label{fig:nvsf}
+\end{figure}
+
+The refractive index is approximately flat from 10~Hz to 100~kHz ($n \approx 1.48$--$1.55$), then rises at 1~MHz (1.62) and 10~MHz (1.76). This upward drift at higher frequencies sits at the edge of the $\pm 1$~ns resolution floor. While the trend is suggestive of frequency dispersion, its marginal statistical significance---with only a single data point clearly separated---prevents a definitive conclusion.
+
+\subsection{Weighted Mean}
+
+To obtain a single best-estimate refractive index, the five per-frequency values were combined using an inverse-variance weighted mean:
+\begin{equation}
+\bar{n} = \frac{\displaystyle\sum_i n_i / \sigma_i^2}{\displaystyle\sum_i 1/\sigma_i^2},
+\qquad
+\sigma_{\bar{n}} = \frac{1}{\sqrt{\displaystyle\sum_i 1/\sigma_i^2}}
+\label{eq:wmean}
+\end{equation}
+Because the $\Delta d$ uncertainty is shared across all measurements (the same two cables were used each time), it does not reduce with averaging and must be treated separately from the independent $\Delta t$ uncertainties. The statistical (independent) component of the combined uncertainty shrinks by $\sqrt{N}$: $\sigma_{\text{stat}} = 0.071/\sqrt{5} = 0.032$. The systematic (correlated) component from $\Delta d$ remains fixed at $\sigma_{\text{sys}} = 0.005$. Adding these in quadrature gives a total uncertainty of $\sigma_{\text{total}} = 0.032$.
+
+The final result is:
+\begin{equation}
+\boxed{\;\bar{n} = 1.594 \pm 0.032 \;\;(1\sigma) \;=\; 1.594 \pm 0.063 \;\;(95\%\;\text{CI})\;}
+\label{eq:result}
+\end{equation}
+This corresponds to an implied velocity factor $v/c = 1/n \approx 0.63$, compared to the RG-58 specification of approximately 0.66.
+
+% ===== DISCUSSION =====
+\section{Discussion}
+
+The weighted-mean refractive index of $1.594 \pm 0.032$ is $2.9\sigma$ above the accepted polyethylene literature value of approximately 1.5. While the majority of individual per-frequency 95\% confidence intervals bracket the literature value, the combined estimate sits systematically high. This offset is consistent with a small, persistent bias rather than random scatter. Plausible sources include systematic cursor-placement error (consistently reading the delay slightly too large) and unaccounted propagation delays through the BNC tee connectors and cable terminations. Although the two-cable subtraction method is designed to cancel such fixed delays, any asymmetry in the connector paths between the short and long cables would produce a residual offset.
+
+The most interesting feature of the data is the apparent increase in refractive index at higher frequencies. The 10~MHz measurement ($n = 1.76 \pm 0.07$) lies $3.7\sigma$ above the literature value, outside its own 95\% confidence interval. This is not readily explained by random noise. Physically, at 10~MHz the skin depth in copper decreases to tens of micrometers, comparable to the inner conductor radius, and dielectric losses in polyethylene begin to rise. Both effects can cause real changes in the effective pulse velocity in RG-58 at high frequencies. However, with only a single high-frequency data point clearly separated from the others, this observation constitutes evidence for dispersion but cannot confirm the functional form. Additional measurements between 1 and 50~MHz would be necessary to map the dispersion curve.
+
+The measurement is overwhelmingly limited by the $\pm 1$~ns time-difference uncertainty, which accounts for over 99\% of the variance in each data point. The cable-length uncertainty ($\sqrt{2}$~cm over 425~cm) is negligible. To improve the measurement, the most effective strategy would be to reduce $\sigma_{\Delta t}$ by using finer cursor placement, averaging multiple acquisitions, or employing a significantly longer cable so that $\Delta t$ is much larger relative to the 1~ns resolution floor. Alternatively, a higher-bandwidth oscilloscope with faster sampling and more precise cursor control would directly shrink the dominant uncertainty term.
+
+% ===== REFERENCES =====
+\section*{References}
+
+\begin{enumerate}
+\item Tektronix, ``TBS1000B Series Digital Storage Oscilloscope User Manual,'' Tektronix, Inc.
+\item B\&K Precision, ``Function Generators Models 4010A \& 4011A Data Sheet,'' B\&K Precision Corp., 2018.
+\item D.\,J.\ Griffiths, \textit{Introduction to Electrodynamics}, 4th ed.\ Cambridge University Press, 2017.
+\item J.\,R.\ Taylor, \textit{An Introduction to Error Analysis}, 2nd ed.\ University Science Books, 1997.
+\end{enumerate}
+
+\newpage
+
+% ===== APPENDIX A =====
+\appendix
+\section{Derivation of the Wave Equation and Phase Velocity}
+
+The derivation begins with Maxwell's equations in a linear, isotropic, source-free dielectric medium ($\rho = 0$, $\mathbf{J} = 0$):
+\begin{align}
+\nabla \cdot \mathbf{E} &= 0 \label{eq:M1}\\
+\nabla \cdot \mathbf{B} &= 0 \label{eq:M2}\\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \label{eq:M3}\\
+\nabla \times \mathbf{B} &= \mu\varepsilon\,\frac{\partial \mathbf{E}}{\partial t} \label{eq:M4}
+\end{align}
+Taking the curl of Eq.~\eqref{eq:M3} and substituting Eq.~\eqref{eq:M4} using the vector identity $\nabla \times (\nabla \times \mathbf{E}) = \nabla(\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E}$, and noting that $\nabla \cdot \mathbf{E} = 0$ in a source-free region, yields the wave equation:
+\begin{equation}
+\nabla^2 \mathbf{E} - \varepsilon\mu\,\frac{\partial^2 \mathbf{E}}{\partial t^2} = 0
+\label{eq:wave_app}
+\end{equation}
+An identical equation holds for $\mathbf{B}$. Comparing with the standard wave equation $\nabla^2 \psi = (1/v^2)\,\partial^2\psi/\partial t^2$ identifies the phase velocity:
+\begin{equation}
+v^2 = \frac{1}{\varepsilon\mu} \quad\Longrightarrow\quad v = \frac{1}{\sqrt{\varepsilon\mu}}
+\label{eq:v_phase}
+\end{equation}
+In vacuum, $\varepsilon = \varepsilon_0$ and $\mu = \mu_0$, so $c = 1/\sqrt{\varepsilon_0 \mu_0}$. The refractive index is then:
+\begin{equation}
+n = \frac{c}{v} = \sqrt{\frac{\varepsilon\mu}{\varepsilon_0\mu_0}}
+\label{eq:n_derived}
+\end{equation}
+
+\newpage
+
+% ===== APPENDIX B =====
+\section{Working Equation and Uncertainty Propagation}
+
+A pulse traveling through a cable of length $L$ at speed $v$ takes time $t = L/v$. For two cables of lengths $L_{\text{short}}$ and $L_{\text{long}}$, the time difference is:
+\begin{equation}
+\Delta t = t_{\text{long}} - t_{\text{short}} = \frac{L_{\text{long}} - L_{\text{short}}}{v} = \frac{\Delta d}{v}
+\label{eq:dt}
+\end{equation}
+Solving for $v$ and substituting into $n = c/v$:
+\begin{equation}
+n = \frac{c\,\Delta t}{\Delta d}
+\label{eq:working_app}
+\end{equation}
+Treating $\Delta t$ and $\Delta d$ as independent Gaussian random variables, the uncertainty in $n$ is obtained by standard error propagation:
+\begin{equation}
+\sigma_n = \sqrt{\left(\frac{\partial n}{\partial \Delta t}\,\sigma_{\Delta t}\right)^{\!2} + \left(\frac{\partial n}{\partial \Delta d}\,\sigma_{\Delta d}\right)^{\!2}}
+= \sqrt{\left(\frac{c}{\Delta d}\,\sigma_{\Delta t}\right)^{\!2} + \left(\frac{c\,\Delta t}{\Delta d^2}\,\sigma_{\Delta d}\right)^{\!2}}
+\label{eq:sigma_n}
+\end{equation}
+
+For the weighted mean across $N$ measurements, the statistical (independent, $\Delta t$-driven) uncertainty shrinks by $\sqrt{N}$, while the systematic ($\Delta d$-driven) uncertainty remains constant. These are combined in quadrature for the final reported uncertainty.
+
+\subsection*{Sample Calculation}
+
+Substituting the experimental values for the 10~Hz measurement: $c = 2.998 \times 10^8$~m/s, $\Delta d = 4.25$~m, $\sigma_{\Delta t} = 1$~ns, $\sigma_{\Delta d} = 0.0141$~m, $\Delta t = 22$~ns:
+\[
+n = \frac{(2.998 \times 10^8)(22 \times 10^{-9})}{4.25} = \frac{6.596}{4.25} = 1.552
+\]
+\[
+\sigma_n = \sqrt{\left(\frac{2.998 \times 10^8}{4.25} \times 10^{-9}\right)^{\!2} + \left(\frac{2.998 \times 10^8 \times 22 \times 10^{-9}}{4.25^2} \times 0.0141\right)^{\!2}} = \sqrt{(0.0706)^2 + (0.0005)^2} \approx 0.071
+\]
+The first term ($\Delta t$ contribution) dominates by more than two orders of magnitude, confirming that the time uncertainty is the controlling source of error.
+
+\end{document}
